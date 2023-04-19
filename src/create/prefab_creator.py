@@ -1,3 +1,4 @@
+from src.ecs.components.c_explosion_state import CExplosionState
 from src.ecs.components.tags.c_tag_explosion import CTagExplosion
 from src.ecs.components.tags.c_tag_hunter import CTagHunter
 from src.ecs.components.c_enemy_state import CEnemyState
@@ -64,6 +65,7 @@ def create_expolsion(world: esper.World, pos: pygame.Vector2, explosion_info: di
     explosion_entity = create_sprite(world, pos, vel, explosion_surface)
     world.add_component(explosion_entity, CTagExplosion())
     world.add_component(explosion_entity,CAnimation(explosion_info["animations"]))
+    world.add_component(explosion_entity, CExplosionState())
     
 
 
