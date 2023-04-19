@@ -1,3 +1,4 @@
+from src.ecs.systems.s_enemy_state import system_enemy_state
 from src.ecs.systems.s_player_state import system_player_state
 from src.ecs.systems.s_animation import system_animation
 import json
@@ -94,6 +95,7 @@ class GameEngine:
         system_movement(self.ecs_world, self.delta_time)
 
         system_player_state(self.ecs_world)
+        system_enemy_state(self.ecs_world,self._player_entity, self.enemies_cfg["Hunter"])
         system_screen_bounce(self.ecs_world, self.screen)
         system_screen_player(self.ecs_world, self.screen)
         system_screen_bullet(self.ecs_world, self.screen)
