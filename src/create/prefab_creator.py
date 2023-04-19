@@ -47,6 +47,13 @@ def create_enemy_square(world: esper.World, pos: pygame.Vector2, enemy_info: dic
     enemy_entity = create_sprite(world,  pos, velocity, enemy_surface)
     world.add_component(enemy_entity, CTagEnemy())
 
+def create_enemy_hunter(world: esper.World, pos: pygame.Vector2, enemy_info: dict):
+    enemy_surface = pygame.image.load(enemy_info["image"]).convert_alpha()    
+    velocity = pygame.Vector2(0,0)
+    enemy_entity = create_sprite(world,  pos, velocity, enemy_surface)
+    world.add_component(enemy_entity, CTagEnemy())
+    world.add_component(enemy_entity, CAnimation(enemy_info["animations"]))
+
 
 def create_player_square(world: esper.World, player_info: dict, player_lvl_info: dict) -> int:
     player_sprite = pygame.image.load(player_info["image"]).convert_alpha()
