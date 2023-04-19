@@ -1,3 +1,4 @@
+from src.ecs.components.tags.c_tag_explosion import CTagExplosion
 from src.ecs.components.tags.c_tag_hunter import CTagHunter
 from src.ecs.components.c_enemy_state import CEnemyState
 from src.ecs.components.c_animation import CAnimation
@@ -56,6 +57,14 @@ def create_enemy_hunter(world: esper.World, pos: pygame.Vector2, enemy_info: dic
     world.add_component(enemy_entity, CTagHunter())
     world.add_component(enemy_entity, CAnimation(enemy_info["animations"]))
     world.add_component(enemy_entity, CEnemyState(pos))
+
+def create_expolsion(world: esper.World, pos: pygame.Vector2, explosion_info: dict):
+    explosion_surface = pygame.image.load(explosion_info["image"]).convert_alpha()
+    vel = pygame.Vector2(0, 0)
+    explosion_entity = create_sprite(world, pos, vel, explosion_surface)
+    world.add_component(explosion_entity, CTagExplosion())
+    world.add_component(explosion_entity,CAnimation(explosion_info["animations"]))
+    
 
 
 def create_player_square(world: esper.World, player_info: dict, player_lvl_info: dict) -> int:

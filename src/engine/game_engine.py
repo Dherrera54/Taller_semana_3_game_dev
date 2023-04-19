@@ -1,3 +1,4 @@
+from src.ecs.systems.s_explosion_state import system_explosion_state
 from src.ecs.systems.s_enemy_state import system_enemy_state
 from src.ecs.systems.s_player_state import system_player_state
 from src.ecs.systems.s_animation import system_animation
@@ -100,9 +101,10 @@ class GameEngine:
         system_screen_player(self.ecs_world, self.screen)
         system_screen_bullet(self.ecs_world, self.screen)
 
-        system_collision_enemy_bullet(self.ecs_world)
-        system_collision_player_enemy(self.ecs_world, self._player_entity, self.level_01_cfg)
+        system_collision_enemy_bullet(self.ecs_world, self.explosion_cfg)
+        system_collision_player_enemy(self.ecs_world, self._player_entity, self.level_01_cfg, self.explosion_cfg)
 
+        system_explosion_state(self.ecs_world)
         system_animation(self.ecs_world,self.delta_time)
         self.ecs_world._clear_dead_entities()
         self.num_bullets = len(self.ecs_world.get_component(CTagBullet))

@@ -1,7 +1,7 @@
 {
     "image": "assets/img/explosion.png",
     "animations": {
-        "number_frames": 8,
+        "number_frames": 4,
         "list": [
             {
                 "name": "EXPLODE",
